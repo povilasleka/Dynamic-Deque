@@ -36,6 +36,8 @@ int main() {
         }
     }
 
+
+    // Sunaikinam deka
     deque_destroy(head, tail);
     
 }
