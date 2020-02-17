@@ -17,12 +17,6 @@ struct node_st {
 
 typedef struct node_st node;
 
-// Response codes
-// 00 - action is successful.
-// 01 - could not allocate memory.
-// 02 - deque is empty and pop operation was not executed.
-
-
 // Funkcijos
 
 
