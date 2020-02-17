@@ -1,26 +1,10 @@
 #include "deque.h"
 
 void deque_create(node** head, node** tail) {
-    *head = *tail = (node*) malloc(sizeof(node));
+    *head = *tail = NULL;
 }
 
 void deque_push_tail(node** head, node** tail, node element) {
-
-    // If pushes first element
-    if (deque_is_empty(*head, *tail)) {
-        node* newHeadNode = (node*) malloc(sizeof(node));
-        newHeadNode->next_node = *head;
-        newHeadNode->prev_node = NULL;
-
-        *head = newHeadNode;
-    }
-
-    node* newTailNode = (node*) malloc(sizeof(node));
-    newTailNode->prev_node = *tail;
-    newTailNode->next_node = NULL;
-    (*tail)->value = element.value;
-    (*tail)->next_node = newTailNode;
-    *tail = newTailNode;
 
 }
 
@@ -37,24 +21,10 @@ void deque_pop_tail(node** head, node** tail, node* element) {
 }
 
 void deque_push_head(node** head, node** tail, node element) {
-
-    // If pushes first element
-    if (deque_is_empty(*head, *tail)) {
-        node* newTailNode = (node*) malloc(sizeof(node));
-        newTailNode->prev_node = *tail;
-        newTailNode->next_node = NULL;
-
-        *tail = newTailNode;
-    }
-
-    node* newNode = (node*) malloc(sizeof(node));
-    newNode->next_node = *head;
-    newNode->prev_node = NULL;
-    (*head)->value = element.value;
-    (*head)->prev_node = newNode;
-
+    node *newNode = (node*) malloc(sizeof(node));
+    newNode->prev_node = *head;
+    (*head)->next_node = newNode;
     *head = newNode;
-
 }
 
 void deque_pop_head(node** head, node** tail, node* element) {
