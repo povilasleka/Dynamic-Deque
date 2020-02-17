@@ -3,7 +3,7 @@
 Dynamic double-ended queue written in C
 
 How to use
-1. Declare queue head and tail pointers.
+1. Declare queue head and tail pointers. (node* head; node* tail)
 2. deque_create(&head, &tail);
 3. Functions you can use after creating a deque.
    * deque_push_tail(&tail, element);
