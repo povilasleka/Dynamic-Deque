@@ -1,4 +1,4 @@
-# Dynamic-Deque
+# Dynamic Deque
 
 Dynamic double-ended queue written in C
 
