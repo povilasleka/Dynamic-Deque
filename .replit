@@ -1,0 +1,3 @@
+language = "c"
+  run = "clang main.c deque.c"
+  
