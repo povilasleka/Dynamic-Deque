@@ -11,3 +11,5 @@ How to use
    * deque_pop_tail(&tail, &element);
    * deque_pop_head(&head, &element);
 4. deque_destroy(head, tail);
+
+[![Run on Repl.it](https://repl.it/badge/github/povilasleka/Dynamic-Deque)](https://repl.it/github/povilasleka/Dynamic-Deque)
