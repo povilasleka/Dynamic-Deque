@@ -17,6 +17,14 @@ struct node_st {
 
 typedef struct node_st node;
 
+struct deque_link {
+  node* head;
+  node* tail;
+  int errorcode;
+}
+
+typedef struct deque_link dlink;
+
 // Funkcijos
 
 

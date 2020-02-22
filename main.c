@@ -19,7 +19,5 @@ int main() {
 
     deque_destroy(head, tail);
 
-    printf("%p %p", head, tail);
-
 
 }
