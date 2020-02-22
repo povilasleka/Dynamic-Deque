@@ -18,10 +18,10 @@ struct node_st {
 typedef struct node_st node;
 
 struct deque_link {
-  node* head;
-  node* tail;
+  struct node_st* head;
+  struct node_st* tail;
   int errorcode;
-}
+};
 
 typedef struct deque_link dlink;
 
@@ -29,19 +29,19 @@ typedef struct deque_link dlink;
 
 
 /**
- * Allocates one memory place for node type element,
- * sets tail and head to point to that memory place.
+ * Allocates memory for dlink type element and sets
+ * head & tail to NULL.
  * 
- * Usage: deque_create(&head, &tail);
+ * Usage: dlink* deque = deque_create();
  */
-void deque_create(node** head, node** tail);
+dlink* deque_create(void);
 
 /**
  * Pushes one element to deque's tail (end).
  * 
  * Usage: deque_push_tail(&head, &tail, int);
  */
-void deque_push_tail(node** tail, node element);
+void deque_push_tail(dlink* deque, node element);
 
 /**
  * Pops single element out of tail. 
@@ -49,14 +49,14 @@ void deque_push_tail(node** tail, node element);
  * 
  * Usage: deque_pop_tail(&head, &tail, &element);
  */
-void deque_pop_tail(node** tail, node* element);
+void deque_pop_tail(dlink* deque, node* element);
 
 /**
  * Pushes one element to deque's head (front).
  * 
  * Usage: deque_push_head(&head, &tail, int);
  */
-void deque_push_head(node** head, node element);
+void deque_push_head(dlink* deque, node element);
 
 /**
  * Pops single element out of head. 
@@ -64,7 +64,7 @@ void deque_push_head(node** head, node element);
  * 
  * Usage: deque_pop_head(&head, &tail, &element);
  */
-void deque_pop_head(node** head, node* element);
+void deque_pop_head(dlink* deque, node* element);
 
 /**
  * 
@@ -74,7 +74,7 @@ bool deque_is_empty(node* address);
 /**
  * 
  */
-void deque_destroy(node* head, node* tail);
+void deque_destroy(dlink* deque);
 
 
 #endif

@@ -1,72 +1,77 @@
 #include "deque.h"
 
-void deque_create(node** head, node** tail) {
-    *head = *tail = malloc(sizeof(node));
-    (*head)->is_zero_element = true;
-    (*tail)->is_zero_element = true;
+dlink* deque_create(void) {
+  dlink* deque = malloc(sizeof(node));
+
+  deque->head = deque->tail = malloc(sizeof(node));
+  deque->head->is_zero_element = true;
+  deque->errorcode = 0;
+
+  return deque;
 }
 
-void deque_push_tail(node** tail, node element) {
-    if (!deque_is_empty(*tail)) {
-        node* newNode = (node*) malloc(sizeof(node));
-        newNode->value = element.value;
-        newNode->prev_node = *tail;
-        (*tail)->next_node = newNode;
-        *tail = newNode;
+void deque_push_tail(dlink* deque, node element) {
+  if (!deque_is_empty(deque->tail)) {
+    node* newNode = (node*) malloc(sizeof(node));
+    newNode->value = element.value;
+    newNode->prev_node = deque->tail;
+    deque->tail->next_node = newNode;
+    deque->tail = newNode;
+  }
+}
+
+
+void deque_pop_tail(dlink* deque, node* element) {
+  if (!deque->tail->is_zero_element) {
+    *element = *(deque->tail);
+    if (deque->tail->prev_node != NULL) {
+      deque->tail = deque->tail->prev_node;
+      free(deque->tail->next_node);
+      deque->tail->next_node = NULL;
     }
-}
-
-void deque_pop_tail(node** tail, node* element) {
-    if (!(*tail)->is_zero_element) {
-        *element = **tail;
-        if ((*tail)->prev_node != NULL) {
-            *tail = (*tail)->prev_node;
-            free((*tail)->next_node);
-            (*tail)->next_node = NULL;
-        }
-    } else {
-        if ((*tail)->prev_node != NULL) {
-            *tail = (*tail)->prev_node;
-            free((*tail)->next_node);
-            (*tail)->next_node = NULL;
-            deque_pop_tail(tail, element);
-        }
+  } else {
+    if (deque->tail->prev_node != NULL) {
+      deque->tail = deque->tail->prev_node;
+      free(deque->tail->next_node);
+      deque->tail->next_node = NULL;
+      deque_pop_tail(deque, element);
     }
+  }
 }
 
-void deque_pop_head(node** head, node* element) {
-    if (!(*head)->is_zero_element) {
-        *element = **head;
-        if ((*head)->next_node != NULL) {
-            *head = (*head)->next_node;
-            free((*head)->prev_node);
-            (*head)->prev_node = NULL;
-        }
-    } else {
-        if ((*head)->next_node != NULL) {
-            *head = (*head)->next_node;
-            free((*head)->prev_node);
-            (*head)->prev_node = NULL;
-            deque_pop_head(head, element);
-        }
+void deque_pop_head(dlink* deque, node* element) {
+  if (!deque->head->is_zero_element) {
+    *element = *(deque->head);
+    if (deque->head->next_node != NULL) {
+      deque->head = deque->head->next_node;
+      free(deque->head->prev_node);
+      deque->head->prev_node = NULL;
     }
-}
-
-void deque_push_head(node** head, node element) {
-    if (!deque_is_empty(*head)) {
-        node* newNode = (node*) malloc(sizeof(node));
-        newNode->next_node = *head;
-        newNode->value = element.value;
-        (*head)->prev_node = newNode;
-        *head = newNode;
+  } else {
+    if (deque->head->next_node != NULL) {
+      deque->head = deque->head->next_node;
+      free(deque->head->prev_node);
+      deque->head->prev_node = NULL;
+      deque_pop_head(deque, element);
     }
+  }
 }
 
-void deque_destroy(node* head, node* tail) {
-    while (head != tail) {
-        head = head->next_node;
-        free(head->prev_node);
-        head->prev_node = NULL;
+void deque_push_head(dlink* deque, node element) {
+  if (!deque_is_empty(deque->head)) {
+    node* newNode = (node*) malloc(sizeof(node));
+    newNode->next_node = deque->head;
+    newNode->value = element.value;
+    deque->head->prev_node = newNode;
+    deque->head = newNode;
+  }
+}
+
+void deque_destroy(dlink* deque) {
+    while (deque->head != deque->tail) {
+        deque->head = deque->head->next_node;
+        free(deque->head->prev_node);
+        deque->head->prev_node = NULL;
     }
 }
 
