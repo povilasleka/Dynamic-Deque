@@ -26,5 +26,5 @@ int main()
     printf("%d", element.value);
   }
 
-  deque_destroy(deque);
+  deque = deque_destroy(deque);
 }

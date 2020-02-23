@@ -16,7 +16,7 @@ dlink *deque_create(void)
 
 void deque_push_tail(dlink *deque, node element)
 {
-  if (!deque_is_empty(deque->tail))
+  if (!deque_is_empty(deque))
   {
     node *newNode = (node *)malloc(sizeof(node));
     newNode->value = element.value;
@@ -76,7 +76,7 @@ void deque_pop_head(dlink *deque, node *element)
 
 void deque_push_head(dlink *deque, node element)
 {
-  if (!deque_is_empty(deque->head))
+  if (!deque_is_empty(deque))
   {
     node *newNode = (node *)malloc(sizeof(node));
     newNode->next_node = deque->head;
@@ -86,7 +86,7 @@ void deque_push_head(dlink *deque, node element)
   }
 }
 
-void deque_destroy(dlink *deque)
+dlink *deque_destroy(dlink *deque)
 {
   while (deque->head != deque->tail)
   {
@@ -94,16 +94,14 @@ void deque_destroy(dlink *deque)
     free(deque->head->prev_node);
     deque->head->prev_node = NULL;
   }
+
+  return NULL;
 }
 
-bool deque_is_empty(node *address)
+bool deque_is_empty(dlink *deque)
 {
-  if (address == NULL)
-  {
+  if (deque->head == NULL && deque->tail == NULL)
     return true;
-  }
   else
-  {
     return false;
-  }
 }

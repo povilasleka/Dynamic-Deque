@@ -68,11 +68,11 @@ void deque_pop_head(dlink *deque, node *element);
 /**
  * 
  */
-bool deque_is_empty(node *address);
+bool deque_is_empty(dlink *deque);
 
 /**
  * 
  */
-void deque_destroy(dlink *deque);
+dlink *deque_destroy(dlink *deque);
 
 #endif
