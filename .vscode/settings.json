@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "deque.h": "c",
+        "PC_Virus.C": "cpp",
+        "stdlib.h": "c"
+    }
+}

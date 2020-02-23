@@ -1,19 +1,25 @@
 #include "deque.h"
 #include <stdio.h>
 
-int main() {
-  dlink* deque = deque_create();
+int main()
+{
+  dlink *deque = deque_create();
   node element;
 
-  for(int i = 0; i < 10; i++) {
+  for (int i = 0; i < 10; i++)
+  {
     element.value = i;
     deque_push_tail(deque, element);
   }
 
-  for(int i = 0; i < 10; i++) {
-    if (i % 2 == 0) {
+  for (int i = 0; i < 10; i++)
+  {
+    if (i % 2 == 0)
+    {
       deque_pop_head(deque, &element);
-    } else {
+    }
+    else
+    {
       deque_pop_tail(deque, &element);
     }
 
